@@ -78,14 +78,15 @@
         }
 
         .container .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #555;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+    display: inline-block;
+    padding: 15px 30px; /* Increase the padding to make the button larger */
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 20px; /* Increase the font size for better visibility */
+}
 
         .container .button:hover {
             background-color: #777;
@@ -101,7 +102,7 @@
 }
 
 .container p {
-    color: green; 
+    color:aqua; 
     font-size: 18px; 
 }
 
@@ -164,6 +165,84 @@
                 color:red ;
             }
         }
+        .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 30px 36px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Change background color of tabs on hover */
+.tab a:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab a.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  
+  
+  
+  width: calc(100% - 60px); /* Calculate the width to be 100% minus the total horizontal padding (2 * 30px) */
+
+  display: none;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-top: none;
+ /* Điều chỉnh chiều rộng của nội dung */
+  margin: 0 auto; /* Để căn giữa nội dung */
+}
+.center-menu {
+  text-align: center;
+  margin-top: 20px;
+  width: 50%;
+  font-size: 40px;
+}
+
+.center-menu a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: lightgray;
+  margin-right: 10px;
+}
+
+.center-content {
+  text-align: center;
+}
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 30px; /* Điều chỉnh kích thước padding ở đây */
+  transition: 0.3s;
+}
+.tablinks {
+  font-size: 40px;
+  color:gold; /* Replace "20px" with your desired font size */
+  display: flex;
+  justify-content: center;
+}
+.tab {
+  display: flex;
+  justify-content: center;
+}
     
     </style>
 </head>
@@ -173,6 +252,49 @@
         <p>
             Đây là một trang web đơn giản được xây dựng bởi mình với mục đích giới thiệu cho mọi </br>người biết nhiều hơn về mình 
         </p>
+        <a>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'menu')">Menu</button>
+            
+          </div>
+          
+          <div id="menu" class="tabcontent">
+            <div class="tab">
+              <button class="tablinks" onclick="openNestedTab(event, 'requirement')">Requirement</button>
+              <button class="tablinks" onclick="openNestedTab(event, 'design')">Design</button>
+              <button class="tablinks" onclick="redirectToImplement()(event, 'implement')">Implement</button>
+            </div>
+          </div>
+          <div class="center-content">
+            <div id="requirement" class="tabcontent">
+              <h3>Requirement</h3>
+              <p>Yêu cầu: Chọn 1 đối tượng bất kỳ trong thế giới thực, ví dụ như lớp môn học, giảng viên,…</br>
+                 Sau đó thiết kế chức năng Quản lý đối tượng đó trên html bao gồm các </br>
+                 tính năng thêm, sửa, xóa, tìm kiếm cho đối tượng đó. Ví dụ, làm chức năng Quản lý Sinh viên,</br> 
+                 bao gôm tính năng thêm, sửa, xóa, tìm kiếm. Chú ý: Các thành viên trong lớp, trong nhóm</br> 
+                 không được chọn các đối tượng giống nhau. </p>
+            </div>
+          
+            <div id="design" class="tabcontent">
+              <h3>Design</h3>
+              
+              <div class="box">
+                <img src="images/A1.jpg" alt="thiết kế trên giây">
+                <button class="downloadButton" onclick="downloadImage('images/A1.jpg')">Download</button>
+              </div>
+              
+              <div class="box">
+                <img src="images/B.jpg" alt="hình Implement">
+                <button class="downloadButton" onclick="downloadImage('images/B.jpg')">Download</button>
+              </div>
+              
+  <a href="https://www.figma.com">Go To FigMa</a>
+            </div>
+            
+          </div></p>
+          
+        </a>
+        
         <div class="image">
             <div class="box">
                 <a href="https://www.facebook.com/xuanlanh.phan.311">Link đến Facebook</a>
@@ -211,9 +333,46 @@
         <a href="#">Xem thêm</a>
         
         <script>
-            function redirectToAbout() {
+       
+  function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+
+function openNestedTab(evt, nestedTabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  document.getElementById(nestedTabName).style.display = "block";
+}
+function redirectToImplement(evt, implementTabName) {
+    openTab(implementTabName);
+
+  }
+  function redirectToImplement() {
+    window.location.href = "Implement.html";
+}
+function redirectToAbout() {
                 window.location.href = "about.html";
             }
+            function downloadImage(imageUrl) {
+  var link = document.createElement('a');
+  link.href = imageUrl;
+  link.download = 'image.jpg';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
         </script>
         <a href="#" class="button" onclick="redirectToAbout()">About</a>
+        
     </div>
+
+</body>
+</html>
